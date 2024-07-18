@@ -1,0 +1,63 @@
+<app-nav-bar style="background-color: #353333;"></app-nav-bar>    
+    <div class="row justify-content-around align-content-center" style="margin:0; min-height: calc(100vh - 10rem);">
+        <div class="col-md-3 offset-md-1">
+            <div class="row justify-content-center">
+                <div class="row justify-content-center">
+                    
+                    <input [(ngModel)]="newTask" placeholder="Escribe una tarea" class="col-12 mb-5 form-control">
+
+                    <div class="col-4">
+                        <button (click)="saveTask()" class="btn"><i class="bi bi-plus-circle" style="color: #B76C26; font-size: 2rem;"></i>Add</button>        
+                    </div>
+                        
+                    <div class="col-4">
+                        <button (click)="updateTask()" [disabled]="selectedTask === null" class="btn"><i class="bi bi-pencil" style="color: #99189B; font-size: 2rem;"></i>Edit</button>
+                    </div>
+
+                    <div class="col-4">
+                        <button (click)="deleteTask()" [disabled]="selectedTask === null" class="btn"><i class="bi bi-trash3" style="color: #FF4242; font-size: 2rem;"></i>Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-7">
+            
+            <div class="card" style="height: 16rem;">
+                <div class="row">
+                  <div class="col-12" style="margin-top: 1rem; margin-left: 1rem; width: 47rem;">
+                    <div 
+                      class="card mb-2" 
+                      style="height: 4rem;" 
+                      *ngFor="let task of tasks; let i = index" 
+                      (click)="selectTask(i)" 
+                      [class.selected]="i === selectedTask"
+                    >
+                      <div class="row align-items-center" style="height: 5rem;">
+                        <div class="col-12 mt-2" style="margin-left: 2rem;">
+                            <div class="row">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" [checked]="i === selectedTask"
+                                    (change)="toggleTaskSelection(i, $event)" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+
+                                        <h4>{{ task }}</h4>
+                                    </label>
+                                  </div>                            
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+        
+
+
+    </div>
+
+<app-footer></app-footer>
